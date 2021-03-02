@@ -22,7 +22,7 @@
             class="list"
             ref="list">
       <div class="song-list-wrapper">
-        <song-list :songs="songs"></song-list>
+        <song-list @select="selectItem" :songs="songs"></song-list>
       </div>
       <!-- 加载组件 -->
       <div class="loading-container" v-show="!songs.length">
@@ -37,6 +37,8 @@
   import SongList from 'base/song-list/song-list'
   import Loading from 'base/loading/loading'
   import {prefixStyle} from 'common/js/dom'
+  // mapActions是vuex提供actions的语法糖
+  import {mapActions} from 'vuex' 
 
   const RESERVED_HEIGHT = 40
   const transform = prefixStyle('transform')
@@ -89,7 +91,18 @@
       },
       back() {
         this.$router.back()
-      }
+      },
+      // 响应song-list发送上来的点击事件
+      // 因为需要提交很多mutations，所以封装一个actions
+      selectItem(item, index) {
+        this.selectPlay({
+          list: this.songs,
+          index
+        })
+      },
+      ...mapActions([
+        'selectPlay'
+      ])
     },
     watch: {
       scrollY(newY) {

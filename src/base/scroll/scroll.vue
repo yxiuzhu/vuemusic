@@ -22,6 +22,11 @@
       data: {
         type: Array,
         default: null
+      },
+      // 是否要监听滚动事件
+      listenScroll: {
+        type: Boolean,
+        default: false
       }
     },
     mounted() {
@@ -39,6 +44,17 @@
           probeType: this.probeType,
           click: this.click
         })
+
+        // 监听scroll事件拿到scroll的位置
+        if (this.listenScroll) {
+          // 保存vue实例的this
+          let me = this
+          this.scroll.on('scroll', (pos) => {
+            // better-scroll的this指向为scroll，
+            // 需要调用vue的emit方法，所以要先保存vue实例的指向
+            me.$emit('scroll', pos)
+          })
+        }
       },
       enable() {
         this.scroll && this.scroll.enable()
@@ -48,6 +64,12 @@
       },
       refresh() {
         this.scroll && this.scroll.refresh()
+      },
+      scrollTo() {
+        this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments)
+      },
+      scrollToElement() {
+        this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)
       }
     },
     watch: {

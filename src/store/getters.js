@@ -1,4 +1,5 @@
 // 通过getters取数据到组件中
+// 可以充当计算属性被引入到组件中
 
 import state from "./state"
 

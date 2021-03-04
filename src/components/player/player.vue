@@ -30,14 +30,16 @@
           <!-- 进度条 -->
           <div class="progress-wrapper">
             <span class="time time-l">{{format(currentTime)}}</span>
-            <div class="progross-bar-wrapper">
-
+            <div class="progress-bar-wrapper">
+              <progress-bar :percent="percent"
+                            @percentChange="onProgressBarChange"
+              ></progress-bar>
             </div>
             <span class="time time-r">{{format(currentSong.duration)}}</span>
           </div>
           <div class="operators">
             <div class="icon i-left">
-              <i class="icon-sequence"></i>
+              <i :class="iconMode"></i>
             </div>
             <div class="icon i-left" :class="disableCls">
               <i @click="prev" class="icon-prev"></i>
@@ -65,7 +67,9 @@
           <p class="desc" v-html="currentSong.singer"></p>
         </div>
         <div class="control">
-          <i @click.stop="togglePlaying" :class="miniIcon"></i>
+          <progress-circle :radius="radius" :percent="percent">
+            <i @click.stop="togglePlaying" class="icon-mini" :class="miniIcon"></i>
+          </progress-circle>
         </div>
         <div class="control">
           <i class="icon-playlist"></i>
@@ -86,17 +90,25 @@
   import {mapGetters, mapMutations} from 'vuex'
   import animations from 'create-keyframe-animation'
   import {prefixStyle} from 'common/js/dom'
+  import ProgressBar from 'base/progress-bar/progress-bar'
+  import ProgressCircle from 'base/progress-circle/progress-circle'
+  import {playMode} from 'common/js/config'
 
   const transform = prefixStyle('transform')
 
   export default {
+    components: {
+      ProgressBar,
+      ProgressCircle
+    },
     data() {
       return {
-        // 快速切换歌曲的标志位
-        songReady: false,
-        // 当前播放时间
-        currentTime: 0
-      }
+          // 快速切换歌曲的标志位
+          songReady: false,
+          // 当前播放时间
+          currentTime: 0,
+          radius: 32
+        }
     },
     computed: {
       // 控制cd的旋转
@@ -107,6 +119,10 @@
       playIcon() {
         return this.playing ? 'icon-pause' : "icon-play"
       },
+      iconMode() {
+        return this.mode === playMode.sequence ? 'icon-sequence' :
+               this.mode === playMode.loop ? 'icon-loop' : 'icon-random'
+      },
       miniIcon() {
         return this.playing ? 'icon-pause-mini' : "icon-play-mini"
       },
@@ -114,12 +130,17 @@
       disableCls() {
         return this.songReady ? '' : 'disable'
       },
+      // 计算歌曲进度
+      percent() {
+        return this.currentTime / this.currentSong.duration
+      },
       ...mapGetters([
         'fullScreen',
         'playlist',
         'currentSong',
         'playing',
-        'currentIndex'
+        'currentIndex',
+        'mode'
       ])
     },
     methods: {
@@ -229,6 +250,10 @@
         const minute = interval / 60 | 0
         const second = this._pad(interval % 60)
         return `${minute}:${second}`
+      },
+      // 改变歌曲播放进度
+      onProgressBarChange(percent) {
+        this.$refs.audio.currentTime = this.currentSong.duration * percent
       },
       // 补充秒的0
       _pad(num, n = 2) {

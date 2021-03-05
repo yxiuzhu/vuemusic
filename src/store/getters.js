@@ -1,8 +1,6 @@
 // 通过getters取数据到组件中
 // 可以充当计算属性被引入到组件中
 
-import state from "./state"
-
 // 将数据放在getters，可以使用mapGetters（vuex语法糖）来获取
 export const singer = state => state.singer
 

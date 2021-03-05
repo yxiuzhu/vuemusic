@@ -1,16 +1,16 @@
 <template>
-  <scroll class="listview" 
-          :data="data" 
+  <scroll class="listview"
+          :data="data"
           ref="listview"
           :listenScroll="listenScroll"
           :probeType="probeType"
           @scroll="scroll">
     <ul>
-      <li v-for="(group, groupIndex) in data" :key="groupIndex" 
+      <li v-for="(group, groupIndex) in data" :key="groupIndex"
           class="list-group" ref="listGroup">
         <h2 class="list-group-title">{{group.title}}</h2>
         <ul>
-          <li @click="selectItem(item)" v-for="(item, index) in group.items" :key="index" 
+          <li @click="selectItem(item)" v-for="(item, index) in group.items" :key="index"
               class="list-group-item">
             <img class="avatar" v-lazy="item.avatar"/>
             <span class="name">{{item.name}}</span>
@@ -23,8 +23,8 @@
     <div class="list-shortcut" @touchstart="onShortcutTouchStart"
          @touchmove.stop.prevent="onShortcutTouchMove">
       <ul>
-        <li v-for="(item, index) in shortcutList" :key="item" 
-            :data-index="index" 
+        <li v-for="(item, index) in shortcutList" :key="item"
+            :data-index="index"
             class="item"
             :class="{'current':currentIndex===index}">
           {{item}}
@@ -108,6 +108,9 @@
         console.log(anchorIndex)
         this._scrollTo(anchorIndex)
       },
+      refresh() {
+        this.$refs.listview.refresh()
+      },
       // 通过scroll事件来获取实时滚动的位置
       scroll(pos) {
         this.scrollY = pos.y
@@ -124,7 +127,7 @@
       // 获取每个group的dom高度数组
       _calculateHeight() {
         this.listHeight = []
-        const list = this.$refs.listGroup 
+        const list = this.$refs.listGroup
         let height = 0
         this.listHeight.push(height)
         for (let i = 0; i < list.length; i++) {

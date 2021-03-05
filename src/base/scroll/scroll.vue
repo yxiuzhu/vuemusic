@@ -42,7 +42,8 @@
         }
         this.scroll = new BScroll(this.$refs.wrapper, {
           probeType: this.probeType,
-          click: this.click
+          click: this.click,
+          tap: true
         })
 
         // 监听scroll事件拿到scroll的位置

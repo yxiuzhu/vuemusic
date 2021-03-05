@@ -12,6 +12,7 @@ const portfinder = require('portfinder')
 // 后端代理
 const express = require('express')
 const axios = require('axios')
+const { type } = require('os')
 const app = express()
 const apiRoutes = express.Router()
 app.use('/api', apiRoutes)
@@ -34,6 +35,32 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       // 同时修改headers，将浏览器请求的参数传给qq的服务端
       app.get('/api/getDiscList', (req, res) => {
         const url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg';
+        axios.get(url, {
+          headers: {
+            referer: 'https://c.y.qq.com/',
+            host: 'c.y.qq.com'
+          },
+          params: req.query
+        }).then((response) => {
+          // 添加正则验证返回的数据是否正确
+          let ret = response.data
+          if (typeof ret === 'string') {
+            const reg = /^\w+\(({[^()]+})\)$/
+            const matches = ret.match(reg)
+            if (matches) {
+              ret = JSON.parse(matches[1])
+            }
+          }
+          // 接受数据后，将数据传到浏览器端
+          res.json(ret)
+          // res.json(response.data)
+        }).catch((e) => {
+          console.log(e)
+        })
+      });
+      // 请求歌词数据
+      app.get('/api/lyric', (req, res) => {
+        const url = 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg';
         axios.get(url, {
           headers: {
             referer: 'https://c.y.qq.com/',

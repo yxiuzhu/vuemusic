@@ -6,14 +6,16 @@ function getRandomInt(min, max) {
 }
 
 // 返回打乱顺序的数组
-function shuffle(arr) {
-  for (let i = 0; i < arr.length; i++) {
+export function shuffle(arr) {
+  // 防止原来的arr数组被影响
+  let _arr = arr.slice()
+  for (let i = 0; i < _arr.length; i++) {
     let j = getRandomInt(0, i)
-    let t = arr[i]
-    arr[i] = arr[j]
-    arr[j] = t
+    let t = _arr[i]
+    _arr[i] = _arr[j]
+    _arr[j] = t
   }
-  console.log(arr)
+  return _arr
 }
 
-shuffle([0,1,2,3,4])
+// shuffle([1,2,3,4,5])

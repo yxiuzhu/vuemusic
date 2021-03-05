@@ -1,22 +1,24 @@
 <template>
-  <div class="singer">
-    <list-view @select="selectSinger" :data="singers"></list-view>
+  <div class="singer" ref="singer">
+    <list-view @select="selectSinger" :data="singers" ref="list"></list-view>
     <router-view></router-view>
   </div>
 </template>
 
 <script type='text/ecmascript-6'>
-  import {getSingerList} from 'api/singer' 
+  import {getSingerList} from 'api/singer'
   import {ERR_OK} from 'api/config'
   import Singer from 'common/js/singer'
   import ListView from 'base/listview/listview'
   // 对mutations进行一些封装
-  import {mapMutations} from 'vuex' 
+  import {mapMutations} from 'vuex'
+  import {playlistMixin} from 'common/js/mixin'
 
   const HOT_NAME = '热门'
   const HOT_SINGER_LEN = 10
 
   export default {
+    mixins: [playlistMixin],
     components: {
       ListView
     },
@@ -29,6 +31,13 @@
       this._getSingerList()
     },
     methods: {
+      // 重写mixin中的handlePlaylist方法
+      handlePlaylist(playlist) {
+        const bottom = playlist.length > 0 ? '60px' : ''
+        this.$refs.singer.style.bottom = bottom
+        // 调用组件list-view的refresh方法
+        this.$refs.list.refresh()
+      },
       selectSinger(singer) {
         // $router的编程式跳转接口
         this.$router.push({

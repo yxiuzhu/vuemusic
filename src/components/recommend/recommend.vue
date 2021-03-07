@@ -3,21 +3,23 @@
     <scroll ref="scroll" class="recommend-content" :data="discList">
       <div>
         <div v-if="recommends.length" class="slider-wrapper">
-        <slider>
-        <div v-for="(item, index) in recommends" :key="index">
-          <a :href="item.linkUrl">
-            <!-- 因为better-scroll和fastclick的点击事件冲突
-            导致点击图片无法跳转
-            利用needsclick属性，使图片可以被点击 -->
-            <img class="needsclick" @load="loadImage" :src="item.picUrl">
-          </a>
-        </div>
-        </slider>
+          <slider>
+            <div v-for="(item, index) in recommends" :key="index">
+              <a :href="item.linkUrl">
+                <!-- 因为better-scroll和fastclick的点击事件冲突
+                导致点击图片无法跳转
+                利用needsclick属性，使图片可以被点击 -->
+                <img class="needsclick" @load="loadImage" :src="item.picUrl">
+              </a>
+            </div>
+          </slider>
         </div>
         <div class="recommend-list">
           <h1 class="list-title">热门歌单推荐</h1>
           <ul>
-            <li v-for="(item, index) in discList" :key="index" class="item">
+            <li @click="selectItem(item)"
+                v-for="(item, index) in discList" :key="index"
+                class="item">
               <div class="icon">
                 <img width="60" height="60" v-lazy="item.imgurl"/>
               </div>
@@ -33,6 +35,8 @@
         <loading></loading>
       </div>
     </scroll>
+    <!-- 对应歌单详情页的二级路由 -->
+    <router-view></router-view>
   </div>
 </template>
 
@@ -43,6 +47,8 @@
   import {getRecommend, getDiscList} from 'api/recommend'
   import {ERR_OK} from 'api/config'
   import {playlistMixin} from 'common/js/mixin'
+  // 推荐歌单详情
+  import {mapMutations} from 'vuex'
 
   export default {
     mixins: [playlistMixin],
@@ -72,10 +78,19 @@
         // 调用组件list-view的refresh方法
         this.$refs.scroll.refresh()
       },
+      // 点击跳转到对应的推荐歌单
+      selectItem(item) {
+        this.$router.push({
+          // http://localhost:8080/#/recommend/7659044117
+          path: `/recommend/${item.dissid}`
+        })
+        this.setDisc(item)
+      },
       _getRecommend() {
         getRecommend().then((res) => {
           if (res.code === ERR_OK) {
             this.recommends = res.data.slider
+            // 轮播图数据
             // console.log(res.data.slider)
           }
         })
@@ -84,7 +99,8 @@
         getDiscList().then((res) => {
           if (res.code === ERR_OK) {
             this.discList = res.data.list
-            // console.log(res.data.list)
+            // 推荐歌单数据传给disc
+            console.log(res.data.list) 
           }
         })
       },
@@ -94,7 +110,10 @@
           this.$refs.scroll.refresh()
           this.checkLoaded = true
         }
-      }
+      },
+      ...mapMutations({
+        setDisc: 'SET_DISC'
+      })
     }
   }
 </script>

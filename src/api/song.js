@@ -1,6 +1,7 @@
 import {commonParams} from './config'
 import axios from 'axios'
 
+// 后台代理获取歌词数据
 export function getLyric(mid) {
   const url = '/api/lyric'
 

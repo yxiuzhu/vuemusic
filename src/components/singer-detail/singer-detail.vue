@@ -63,7 +63,9 @@
           let {musicData} = item //得到music对象
           if (musicData.songid && musicData.albummid) {
             // createSong将song再封装了一层
+            console.log(musicData)
             ret.push(createSong(musicData))
+            console.log(ret)
             // 将正确歌曲的url添加进对应的歌曲列表
             this._getSongUrl(musicData.songmid).then(url => {
               // console.log(url)

@@ -4,6 +4,10 @@
       <li @click="selectItem(song, index)"
           v-for="(song, index) in songs" :key="index"
           class="item">
+        <!-- 添加排行榜详情的rank图标 -->
+        <div class="rank" v-show="rank">
+          <span :class="getRankCls(index)">{{getRankText(index)}}</span>
+        </div>
         <div class="content">
           <h2 class="name">{{song.name}}</h2>
           <p class="desc">{{getDesc(song)}}</p>
@@ -19,6 +23,11 @@
       songs: {
         type: Array,
         default: []
+      },
+      // 为排行榜详情页定制
+      rank: {
+        type: Boolean,
+        default: false
       }
     },
     methods: {
@@ -28,6 +37,19 @@
       },
       getDesc(song) {
         return `${song.singer} · ${song.album}`
+      },
+      // 给排行榜详情页定制样式
+      getRankCls(index) {
+        if (index <= 2) {
+          return `icon icon${index}`
+        } else {
+          return 'text'
+        }
+      },
+      getRankText(index) {
+        if (index > 2) {
+          return index + 1
+        }
       }
     }
   }

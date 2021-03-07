@@ -100,7 +100,7 @@
           if (res.code === ERR_OK) {
             this.discList = res.data.list
             // 推荐歌单数据传给disc
-            console.log(res.data.list) 
+            // console.log(res.data.list)
           }
         })
       },

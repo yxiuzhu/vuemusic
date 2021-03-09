@@ -27,6 +27,11 @@
       listenScroll: {
         type: Boolean,
         default: false
+      },
+      // 是否上拉刷新
+      pullup: {
+        type: Boolean,
+        default: false
       }
     },
     mounted() {
@@ -54,6 +59,16 @@
             // better-scroll的this指向为scroll，
             // 需要调用vue的emit方法，所以要先保存vue实例的指向
             me.$emit('scroll', pos)
+          })
+        }
+
+        // 负责检测scroll派发上拉到底的事件
+        // scrollEnd：监听滚动结束的时候会派发一个滚动结束的事件
+        if (this.pullup) {
+          this.scroll.on('scrollEnd', () => {
+            if (this.scroll.y <= (this.scroll.maxScrollY + 50)) {
+              this.$emit('scrollToEnd')
+            }
           })
         }
       },

@@ -22,6 +22,7 @@
       }
     },
     computed: {
+      // 两个计算属性是从getters中获取的
       title() {
         return this.singer.name
       },

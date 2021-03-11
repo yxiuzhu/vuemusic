@@ -18,4 +18,19 @@ export function shuffle(arr) {
   return _arr
 }
 
+// 测试工具函数
 // shuffle([1,2,3,4,5])
+
+// 节流函数
+export function debounce(func, delay) {
+  let timer
+
+  return function (...args) {
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(() => {
+      func.apply(this, args)
+    }, delay)
+  }
+}

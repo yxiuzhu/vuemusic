@@ -32,6 +32,11 @@
       pullup: {
         type: Boolean,
         default: false
+      },
+      // 滚动之前，派发一个事件
+      beforeScroll: {
+        type: Boolean,
+        default: false
       }
     },
     mounted() {
@@ -69,6 +74,14 @@
             if (this.scroll.y <= (this.scroll.maxScrollY + 50)) {
               this.$emit('scrollToEnd')
             }
+          })
+        }
+
+        // 在滚动列表之前派发一个事件，
+        // 防止移动端的键盘在滚动列表时，出现不会收起的问题
+        if (this.beforeScroll) {
+          this.scroll.on('beforeScrollStart', () => {
+            this.$emit('beforeScroll')
           })
         }
       },

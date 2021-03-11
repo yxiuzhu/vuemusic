@@ -48,6 +48,7 @@
         // 实现将singer传入组件
         this.setSinger(singer)
       },
+
       _getSingerList() {
         getSingerList().then((res) => {
           if (res.code === ERR_OK) {

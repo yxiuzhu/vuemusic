@@ -22,8 +22,8 @@
               </span>
             </h1>
             <search-list @select="addQuery"
-                        @delete="deleteSearchHistory"
-                        :searches="searchHistory"></search-list>
+                         @delete="deleteSearchHistory"
+                         :searches="searchHistory"></search-list>
           </div>
         </div>
       </scroll>
@@ -85,8 +85,7 @@
         this.$refs.shortcut.refresh()
 
         this.$refs.searchResult.style.bottom = bottom
-        this.$resf.suggest.refresh()
-
+        this.$refs.suggest.refresh()
       },
       addQuery(query) {
         // console.log('我被点了！')

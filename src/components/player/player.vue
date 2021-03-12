@@ -97,11 +97,13 @@
             <i @click.stop="togglePlaying" class="icon-mini" :class="miniIcon"></i>
           </progress-circle>
         </div>
-        <div class="control">
+        <div class="control" @click.stop="showPlaylist">
           <i class="icon-playlist"></i>
         </div>
       </div>
     </transition>
+    <!-- 播放列表组件 -->
+    <playlist ref="playlist"></playlist>
     <!-- canplay歌曲能播放时，才能点击切到下一首 -->
     <!-- error歌曲获取错误 -->
     <audio ref="audio"
@@ -123,6 +125,7 @@
   import {shuffle} from 'common/js/util'
   import Lyric from 'lyric-parser'
   import Scroll from 'base/scroll/scroll'
+  import Playlist from 'components/playlist/playlist'
 
   const transform = prefixStyle('transform')
   const transitionDuration = prefixStyle('transitionDuration')
@@ -131,7 +134,8 @@
     components: {
       ProgressBar,
       ProgressCircle,
-      Scroll
+      Scroll,
+      Playlist
     },
     data() {
       return {
@@ -388,6 +392,10 @@
         // cd下面显示当前播放歌词
         this.playingLyric = txt
       },
+      // 点击弹出歌曲列表
+      showPlaylist() {
+        this.$refs.playlist.show()
+      },
       // 控制cd和歌词的切换
       middleTouchStart(e) {
         this.touch.initiated = true
@@ -484,6 +492,10 @@
     },
     watch: {
       currentSong(newSong, oldSong) {
+        // 防止搜索页面删除最后一首歌的时候,流程继续走报错
+        if (!newSong.id) {
+          return
+        }
         // 切换歌单的时候，歌曲id没有改变，则直接返回
         if (newSong.id === oldSong.id) {
           return

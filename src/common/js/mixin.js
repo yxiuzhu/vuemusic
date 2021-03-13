@@ -1,5 +1,5 @@
 // 用于解决小播放器导致滚动不到底的情况
-import {mapGetters, mapMutations} from 'vuex'
+import {mapGetters, mapMutations, mapActions} from 'vuex'
 import {playMode} from 'common/js/config'
 import {shuffle} from 'common/js/util'
 
@@ -74,3 +74,40 @@ export const playerMixin = {
     })
   }
 }
+
+// search和add-song组件的混入
+export const searchMixin = {
+  data() {
+    return {
+      query: '',
+      refreshDelay: 100
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'searchHistory'
+    ]),
+  },
+  methods: {
+    addQuery(query) {
+      // console.log('我被点了！')
+      this.$refs.searchBox.setQuery(query)
+    },
+    onQueryChange(query) {
+      this.query = query
+    },
+    // 调用子组件的方法
+    blurInput() {
+      this.$refs.searchBox.blur()
+    },
+    // 保存搜索结果
+    saveSearch() {
+      this.saveSearchHistory(this.query)
+    },
+    ...mapActions([
+      'saveSearchHistory',
+      'deleteSearchHistory'
+    ])
+  }
+}
+

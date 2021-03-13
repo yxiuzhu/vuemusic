@@ -116,7 +116,7 @@
 </template>
 
 <script type='text/ecmascript-6'>
-  import {mapGetters, mapMutations} from 'vuex'
+  import {mapActions, mapGetters, mapMutations} from 'vuex'
   import animations from 'create-keyframe-animation'
   import {prefixStyle} from 'common/js/dom'
   import ProgressBar from 'base/progress-bar/progress-bar'
@@ -314,6 +314,8 @@
       },
       ready() {
         this.songReady = true
+        // 写入播放的歌曲
+        this.savePlayHistory(this.currentSong)
       },
       // 处理歌曲加载失败：网络原因/url不存在
       // 防止出错，按钮都不能使用
@@ -487,8 +489,11 @@
         setPlayingState: 'SET_PLAYING_STATE',
         setCurrentIndex: 'SET_CURRENT_INDEX',
         setPlayMode: 'SET_PLAY_MODE',
-        setPlayList: 'SET_PLAYLIST'
-      })
+        setPlayList: 'SET_PLAYLIST',
+      }),
+      ...mapActions([
+        'savePlayHistory'
+      ])
     },
     watch: {
       currentSong(newSong, oldSong) {

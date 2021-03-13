@@ -10,64 +10,20 @@
 
 <body>
   <script>
-let arr = [1, 3, {
-                  username: 'kobe',
-                  job: {type: {job1: 'washing'},salary: 32}
-    }];
-let arr2 = arr.concat();
-// let arr3 = arr.slice();
-arr2[2].job.type.job1 = 'cleaning';
-//arr3[2].username = 'wade';
-console.log(arr); //[ 1, 3, { username: 'wade' } ]
-
-    // function isObject(x) {
-    //   return Object.prototype.toString.call(x) === '[object Object]';
+    // for (var i = 1; i <= 5; i++) {
+    //   setTimeout(function timer() {
+    //     console.log(i)
+    //   }, i * 1000)
     // }
-
-    // function clone(source) {
-    //   if (!isObject(source)) return source;
-    //   // let target = Array.isArray(source) ? [] : {};
-    //   let target = {};
-    //   for (var i in source) {
-    //     if (source.hasOwnProperty(i)) {
-    //       if (typeof source[i] === 'object') {
-    //         target[i] = clone(source[i]); // 注意这里
-    //       } else {
-    //         target[i] = source[i];
-    //       }
-    //     }
-    //   }
-
-    //   return target;
-    // }
-    // function clone(source) {
-    //   // var target = {};
-    //   let target = Array.isArray(source) ? [] : {};
-    //   for (var i in source) {
-    //     if (source.hasOwnProperty(i)) {
-    //       if (typeof source[i] === 'object') {
-    //         target[i] = clone(source[i]); // 注意这里
-    //       } else {
-    //         target[i] = source[i];
-    //       }
-    //     }
-    //   }
-
-    //   return target;
-    // }
-
-    // const target = {
-    //   field1: 1,
-    //   field2: undefined,
-    //   field3: {
-    //     child: 'child'
-    //   },
-    //   field4: [2, 4, 8]
-    // };
-
-    // var cloneTarget = clone(target)
-
-    // console.log(cloneTarget)
+    for (var i = 1; i <= 5; i++) {
+      setTimeout(
+        function timer(j) {
+          console.log(j)
+        },
+        i * 1000,
+        i
+      )
+    }
   </script>
 </body>
 

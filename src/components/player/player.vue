@@ -77,7 +77,7 @@
               <i @click="next" class="icon-next"></i>
             </div>
             <div class="icon i-right">
-              <i class="icon icon-not-favorite"></i>
+              <i class="icon" @click="toggleFavorite(currentSong)" :class="getFavoriteIcon(currentSong)"></i>
             </div>
           </div>
         </div>
@@ -108,7 +108,7 @@
     <!-- error歌曲获取错误 -->
     <audio ref="audio"
            :src="currentSong.url"
-           @canplay="ready"
+           @play="ready"
            @error="error"
            @timeupdate="updateTime"
            @ended="end"></audio>
@@ -180,7 +180,8 @@
         'playing',
         'currentIndex',
         'mode',
-        'sequenceList'
+        'sequenceList',
+        'favoriteList'
       ])
     },
     created() {
@@ -274,6 +275,7 @@
         // 处理边界条件：列表只有一首歌
         if (this.playlist.length === 1) {
           this.loop()
+          return
         } else {
           if (this.currentLyric) {
             // 将歌词偏移到开头
@@ -370,6 +372,10 @@
       },
       getLyric() {
         this.currentSong.getLyric().then((lyric) => {
+          // 防止切歌时，下一首歌在获取歌词
+          if (this.currentSong.lyric !== lyric) {
+            return
+          }
           this.currentLyric = new Lyric(lyric, this.handleLyric)
           if (this.playing) {
             this.currentLyric.play()
@@ -484,6 +490,27 @@
           scale
         }
       },
+      // 获取喜欢的icon
+      getFavoriteIcon(song) {
+        if (this.isFavorite(song)) {
+          return 'icon-favorite'
+        }
+        return 'icon-not-favorite'
+      },
+      // 展示喜欢列表
+      toggleFavorite(song) {
+        if (this.isFavorite(song)) {
+          this.deleteFavoriteList(song)
+        } else {
+          this.saveFavoriteList(song)
+        }
+      },
+      isFavorite(song) {
+        const index = this.favoriteList.findIndex((item) => {
+          return item.id === song.id
+        })
+        return index > -1
+      },
       ...mapMutations({
         setFullScreen: 'SET_FULL_SCREEN',
         setPlayingState: 'SET_PLAYING_STATE',
@@ -492,7 +519,9 @@
         setPlayList: 'SET_PLAYLIST',
       }),
       ...mapActions([
-        'savePlayHistory'
+        'savePlayHistory',
+        'saveFavoriteList',
+        'deleteFavoriteList'
       ])
     },
     watch: {
@@ -508,10 +537,14 @@
         // 切歌，重新获取歌词之前要把之前获取的歌词stop
         if (this.currentLyric) {
           this.currentLyric.stop()
+          this.currentTime = 0
+          this.playingLyric = ''
+          this.currentLineNum = 0
         }
+        clearTimeout(this.timer)
         // 边界条件：js在微信后台不执行，songready状态不变化
         // 将this.$nextTick(() => {换成setTimeout保证微信从后台切到前台能播放
-        setTimeout(() => {
+        this.timer = setTimeout(() => {
           this.$refs.audio.play()
           this.getLyric()
         }, 1000)

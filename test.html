@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <h1 id="first">hello World<h1>
+      <h1 id="second">hexo</h1>
+      <h1>third</h1>
+
+      <title id="title">三十课 - JavaScript DOM操作之标准属性</title>
+      <script src="http://res.30ke.cn/res/js/console.js"></script>
+</head>
+
+<body>
+  <script>
+function Insertion(arr) {
+  let len = arr.length;
+  let preIndex, current;
+  for (let i = 1; i < len; i++) {
+    preIndex = i - 1;
+    current = arr[i];
+    while (preIndex >= 0 && current < arr[preIndex]) {
+      arr[preIndex + 1] = arr[preIndex];
+      preIndex--;
+    }
+    arr[preIndex + 1] = current;
+  }
+  return arr;
+}
+
+var arr = [3, 5, 7, 1, 4, 56, 12, 78, 25, 0, 9, 8, 42, 37];
+console.log(Insertion(arr))
+
+  </script>
+</body>
+
+</html>

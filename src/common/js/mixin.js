@@ -83,7 +83,7 @@ export const playerMixin = {
       }
     },
     isFavorite(song) {
-      const index = this.favoriteList.findIndex(() => {
+      const index = this.favoriteList.findIndex((item) => {
         return item.id === song.id
       })
       return index > -1

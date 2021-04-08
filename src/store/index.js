@@ -14,10 +14,10 @@ const debug = process.env.NODE_ENV !== 'production'
 
 // 是一个单例模式
 export default new Vuex.Store({
-  actions,
-  getters,
   state,
   mutations,
+  actions,
+  getters,
   // 用来提示是否是通过mutations修改的state数据
   strict: debug,
   // 插件

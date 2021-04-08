@@ -20,7 +20,6 @@ const Disc = () => import('components/disc/disc')
 const TopList = () => import('components/top-list/top-list')
 const UserCenter = () => import('components/user-center/user-center')
 
-
 Vue.use(Router)
 
 export default new Router({

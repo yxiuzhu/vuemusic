@@ -58,6 +58,7 @@ export const insertSong = function ({commit, state}, song) {
     // 如果当前插入的序号大于列表中的序号
     if (currentIndex > fpIndex) {
       playlist.splice(fpIndex, 1)
+      currentIndex--
     } else {
       playlist.splice(fpIndex + 1, 1)
     }

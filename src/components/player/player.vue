@@ -402,6 +402,7 @@
       },
       // 点击弹出歌曲列表
       showPlaylist() {
+        console.log('我被点了')
         this.$refs.playlist.show()
       },
       // 控制cd和歌词的切换

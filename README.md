@@ -147,26 +147,17 @@ npm run dev
 
 
 ## 项目目录结构
-supermall
 
+vuemusic
 ├─build --打包配置
-
 ├─src -- 项目文件
-
 │  ├─App.vue
-
 │  ├─main.js
-
 │  ├─api -- axios、jsonp服务端通讯
-
 │  ├─base -- 基础组件
-
 │  ├─common -- 处理缓存、操作dom、配置通讯、mixin等工具类
-
 │  ├─components -- 业务组件
-
 │  ├─router -- Vue Router路由配置
-
 │  └─store -- Vuex
 
 ## 项目总结

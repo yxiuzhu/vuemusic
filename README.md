@@ -147,7 +147,7 @@ npm run dev
 
 
 ## 项目目录结构
->supermall
+supermall
 ├─build --打包配置
 ├─src -- 项目文件
 │  ├─App.vue

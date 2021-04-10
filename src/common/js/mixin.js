@@ -116,7 +116,7 @@ export const searchMixin = {
   },
   methods: {
     addQuery(query) {
-      // console.log('我被点了！')
+      // console.log('我被点了~')
       this.$refs.searchBox.setQuery(query)
     },
     onQueryChange(query) {

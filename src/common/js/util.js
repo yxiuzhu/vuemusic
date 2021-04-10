@@ -4,7 +4,6 @@ function getRandomInt(min, max) {
   // 返回一个包括min和max之间的整数
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
-
 // 返回打乱顺序的数组
 export function shuffle(arr) {
   // 防止原来的arr数组被影响

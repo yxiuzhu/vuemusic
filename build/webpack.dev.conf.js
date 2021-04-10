@@ -15,6 +15,7 @@ const axios = require('axios')
 const { type } = require('os')
 const app = express()
 const apiRoutes = express.Router()
+
 app.use('/api', apiRoutes)
 
 const HOST = process.env.HOST
@@ -31,7 +32,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   devServer: {
     // 使用axios反向代理的方式请求获取数据
     before(app) {
-      // 从真实的qq服务器通过axios发送一个http请求，
+      // 通过axios发送一个http请求，从真实的qq服务器接受JSON数据
       // 同时修改headers，将浏览器请求的参数传给qq的服务端
       app.get('/api/getDiscList', (req, res) => {
         const url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg';

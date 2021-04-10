@@ -29,7 +29,8 @@
         <suggest :query="query"
                  :showSinger="showSinger"
                  @select="selectSuggest"
-                 @listScroll="blurInput"></suggest>
+                 @listScroll="blurInput">
+        </suggest>
       </div>
       <top-tip ref="topTip">
         <div class="tip-title">

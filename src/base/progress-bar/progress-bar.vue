@@ -31,6 +31,7 @@
       this.touch = {}
     },
     methods: {
+      // 记录初始touch的位置
       progressTouchStart(e) {
         this.touch.initiated = true
         // x方向上手指的位置
@@ -38,6 +39,7 @@
         // 按钮进度的初始位置
         this.touch.left = this.$refs.progress.clientWidth
       },
+      // 设置移动手指的偏移
       progressTouchMove(e) {
         // 确保被初始化
         if (!this.touch.initiated) {
@@ -49,6 +51,7 @@
         const offsetWidth = Math.min(this.$refs.progressBar.clientWidth - progressBtnWidth, Math.max(0, this.touch.left + deltaX))
         this._offset(offsetWidth)
       },
+      // 手指离开屏幕
       progressTouchEnd() {
         this.touch.initiated = false
         this._triggerPercent()

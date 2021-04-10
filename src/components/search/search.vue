@@ -3,6 +3,7 @@
     <div class="search-box-wrapper">
       <search-box ref="searchBox" @query="onQueryChange"></search-box>
     </div>
+    <!-- 没query搜索记录，显示热门搜索 -->
     <div ref="shortcutWrapper" class="shortcut-wrapper" v-show="!query">
       <scroll :refreshDelay="refreshDelay" class="shortcut" ref="shortcut" :data="shortcut">
         <div>
@@ -28,6 +29,7 @@
         </div>
       </scroll>
     </div>
+    <!-- 输入query搜索词，显示搜索结果 -->
     <div ref="searchResult" class="search-result" v-show="query">
       <suggest ref="suggest" @select="saveSearch" @listScroll="blurInput" :query="query"></suggest>
     </div>

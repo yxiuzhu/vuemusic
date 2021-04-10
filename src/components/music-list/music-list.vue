@@ -6,7 +6,7 @@
     <h1 class="title" v-html="title"></h1>
     <div class="bg-image" :style="bgStyle" ref="bgImage">
       <div class="play-wrapper">
-        <div class="play" v-show="songs.length>0" ref="playBtn" @click="random">
+        <div @click="random" class="play" v-show="songs.length>0" ref="playBtn">
           <i class="icon-play"></i>
           <span class="text">随机播放全部</span>
         </div>
@@ -124,10 +124,6 @@
     },
     watch: {
       scrollY(newY) {
-        // translateY为layer层最远的滚动距离
-        // console.log(newY)
-        // console.log("minTranslateY:"+this.minTranslateY)
-        // 初始newY=0然后逐渐变小，minTranslateY=-222
         let translateY = Math.max(this.minTranslateY, newY)
         // 上拉覆盖图片背景
         let zIndex = 0

@@ -105,7 +105,6 @@
         // | 0 是向下取整
         let delta = (this.touch.y2 - this.touch.y1) / ANCHOR_HEIGHT | 0
         let anchorIndex = parseInt(this.touch.anchorIndex) + delta
-        console.log(anchorIndex)
         this._scrollTo(anchorIndex)
       },
       refresh() {

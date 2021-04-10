@@ -23,3 +23,5 @@ export default new Vuex.Store({
   // 插件
   plugins: debug ? [createLogger()] : []
 })
+
+

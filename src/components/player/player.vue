@@ -53,7 +53,7 @@
             <span class="dot" :class="{'active': currentShow === 'cd'}"></span>
             <span class="dot" :class="{'active': currentShow === 'lyric'}"></span>
           </div>
-          <!-- 进度条 -->
+          <!-- 直线进度条 -->
           <div class="progress-wrapper">
             <span class="time time-l">{{format(currentTime)}}</span>
             <div class="progress-bar-wrapper">
@@ -93,6 +93,7 @@
           <p class="desc" v-html="currentSong.singer"></p>
         </div>
         <div class="control">
+          <!-- 圆形进度条 -->
           <progress-circle :radius="radius" :percent="percent">
             <i @click.stop="togglePlaying" class="icon-mini" :class="miniIcon"></i>
           </progress-circle>
@@ -211,7 +212,7 @@
             transform: `translate3d(0,0,0) scale(1)`
           }
         }
-
+        // 注册animations动画
         animations.registerAnimation({
           name: 'move',
           animation,
@@ -220,7 +221,7 @@
             easing: 'linear'
           }
         })
-
+        // 运行animations动画（作用的dom，动画名称，done动画执行完毕的函数）
         animations.runAnimation(this.$refs.cdWrapper, 'move', done)
       },
       afterEnter() {
@@ -285,6 +286,7 @@
           if (index === this.playlist.length) {
             index = 0
           }
+          // 通过mutations维护当前歌曲的播放索引
           this.setCurrentIndex(index)
           if (!this.playing) {
             this.togglePlaying()
@@ -419,7 +421,7 @@
         const touch = e.touches[0]
         const deltaX = touch.pageX - this.touch.startX
         const deltaY = touch.pageY - this.touch.startY
-        // 维护y轴滚动是为了在y轴移动距离更大时是移动歌词
+        // 维护y轴滚动是为了在y轴移动距离更大时,移动的是歌词
         if (Math.abs(deltaY) > Math.abs(deltaX)) {
           return
         }

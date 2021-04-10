@@ -33,7 +33,9 @@ npm run dev
 ```
 
 ## 项目演示
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210410205921806.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhb3RpYW4xOTk3,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/20210410210100393.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhb3RpYW4xOTk3,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210410212120441.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhb3RpYW4xOTk3,size_16,color_FFFFFF,t_70) ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210410212055435.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhb3RpYW4xOTk3,size_16,color_FFFFFF,t_70)
+
+
 
 - [项目演示地址](http://47.115.112.11:8900/)（请用chrome手机模式预览）
 
@@ -138,10 +140,9 @@ npm run dev
 
 ## 作者
 
-👤 **y_xiuzhu(杨秀竹)**
-👤 老师：**ustbhuangyi(黄轶)**
+👤 **y_xiuzhu(杨秀竹)**👤 老师：**ustbhuangyi(黄轶)**
 
-[项目github地址，期待你的星星🌟](https://github.com/yxiuzhu/supermall)
+[项目github地址，期待你的星星🌟](https://github.com/yxiuzhu/vuemusic)
 
 
 ## 项目目录结构

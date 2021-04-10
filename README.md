@@ -253,6 +253,7 @@ vuemusic
 * 播放器展开收起动画：在`name="normal"`的CSS中实现
 * 钩子函数：实现cd飞入飞出
 * 使用开源的第三方库`create-keyframe-animation`来使用`js`创建cd的缩放动画
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210410103715847.png)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210410110041582.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhb3RpYW4xOTk3,size_16,color_FFFFFF,t_70)
 

@@ -174,6 +174,7 @@ vuemusic
 **`jsonp`解决跨域问题，获取接口数据**
 
 * 使用jsonp解决跨域问题
+
 * 将引用的第三方库jsonp进行封装
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210409204804415.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhb3RpYW4xOTk3,size_16,color_FFFFFF,t_70)
@@ -233,6 +234,7 @@ vuemusic
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210410094925230.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhb3RpYW4xOTk3,size_16,color_FFFFFF,t_70)
 
 **HTML5的新特性`audio`元素实现player音乐播放**
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2021041009592592.png)
 
 **实现对歌曲的【播放、暂停、切歌、歌单顺序播放、单曲循环、随机播放，添加喜欢】**
@@ -241,6 +243,7 @@ vuemusic
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210410102606597.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhb3RpYW4xOTk3,size_16,color_FFFFFF,t_70)
 
 * 随机播放：使用shuffle打乱当前歌曲的播放列表
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210410102902746.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhb3RpYW4xOTk3,size_16,color_FFFFFF,t_70)
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210410102735299.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhb3RpYW4xOTk3,size_16,color_FFFFFF,t_70)
@@ -256,6 +259,7 @@ vuemusic
 **歌曲播放进度条**
 
 * 直线进度条
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210410140633427.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hhb3RpYW4xOTk3,size_16,color_FFFFFF,t_70)
 
 * 圆形进度条：使用svg图像创建圆形进度条

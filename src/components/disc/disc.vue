@@ -37,11 +37,13 @@
     methods: {
       _getSongList() {
         // 如果推荐歌单没有歌曲数据，自动跳转回推荐界面
+        console.log(this.disc)
         if (!this.disc.dissid) {
           this.$router.push('/recommend')
           return
         }
         getSongList(this.disc.dissid).then((res) => {
+          console.log(res)
           if (res.code === ERR_OK) {
             console.log(res.cdlist[0].songlist)
             this.songs = this._normalizeSong(res.cdlist[0].songlist)

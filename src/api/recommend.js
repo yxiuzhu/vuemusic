@@ -1,5 +1,6 @@
 import jsonp from 'common/js/jsonp'
 import {commonParams, options} from './config'
+import axios from 'axios'
 
 export function getRecommend() {
   const url = 'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg'
@@ -13,7 +14,6 @@ export function getRecommend() {
   return jsonp(url, data, options)
 }
 
-import axios from 'axios'
 // 变成Ajax请求
 export function getDiscList() {
   const url = '/api/getDiscList'
@@ -47,24 +47,21 @@ export function getSongList(disstid) {
     type: 1,
     json: 1,
     utf8: 1,
-    onlysong: 0,
     new_format: 1,
     disstid,  //重要参数
     g_tk: 295866277,
-    loginUin: 0,
-    hostUin: 0,
-    format: 'json',
-    notice: 0,
     platform: 'yqq.json',
     needNewCode: 0,
+    format: 'json',
   })
 
   return axios.get(url, {
     params: data
   }).then((res) => {
+    console.log(res)
     return Promise.resolve(res.data)
   }).catch((e) => {
     console.log(e)
+    console.log('有错')
   })
 }
-

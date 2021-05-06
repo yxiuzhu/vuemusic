@@ -161,7 +161,7 @@ vuemusic
 > > 
 > > base -- 基础组件
 > > 
-> > common -- 处理缓存、操作dom、配置通讯、mixin等工具类
+> > common -- 处理缓存、操作dom、配置网络通讯、mixin等工具类
 > > 
 > > components -- 业务组件
 > > 

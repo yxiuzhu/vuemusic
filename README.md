@@ -37,9 +37,9 @@ npm run dev
 <img src="https://img-blog.csdnimg.cn/387eff10880d4a838191374fcb1234d9.gif#pic_center" /><img src="https://img-blog.csdnimg.cn/8ad357d6da9745cda716eccc892900ed.gif#pic_center" />
 
 
-- [项目演示地址](http://47.115.112.11:8900/)（请用chrome手机模式预览）
+- [项目演示地址](http://1.14.153.166:9000/#/recommend)（请用chrome手机模式预览）
 
-![音乐播放器二维码](https://img-blog.csdnimg.cn/20210410210317578.png)
+![音乐播放器二维码](https://img-blog.csdnimg.cn/6d406b75620f4973bcca2c8fcd489701.png)
 
 
 ## 项目页面及功能
